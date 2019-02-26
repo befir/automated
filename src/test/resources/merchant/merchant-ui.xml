@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="自动化测试脚本" parallel="tests" thread-count="3">
+    <test name="商家中心-页面自动化测试">
+        <parameter name="loginUserName" value="kekoukele"/>
+        <parameter name="loginPassword" value="123456"/>
+        <classes>
+            <class name="merchant.page.MerchantOrgManage"/>
+        </classes>
+    </test>
+    <listeners>
+        <listener class-name="org.uncommons.reportng.HTMLReporter" />
+    </listeners>
+</suite>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="财务中心-接口自动化" parallel="tests" thread-count="1">
+    <parameter name="loginUserName" value="kekoukele"/>
+    <parameter name="loginPassword" value="123456"/>
+    <test name="apSupplierInvoice/queryInvoiceListWithPag">
+        <parameter name="caseFile" value="finance/case/finance-restful-service.xlsx"/>
+        <classes><class name="common.RestfulTest"/></classes>
+    </test>
+    <listeners>
+        <listener class-name="org.uncommons.reportng.HTMLReporter" />
+    </listeners>
+</suite>

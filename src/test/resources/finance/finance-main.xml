@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="财务中心自动化测试" parallel="tests" thread-count="3">
+    <suite-files>
+        <suite-file path="finance-service.xml"/>
+        <suite-file path="finance-ui.xml"/>
+    </suite-files>
+    <listeners>
+        <listener class-name="org.uncommons.reportng.HTMLReporter" />
+    </listeners>
+</suite>

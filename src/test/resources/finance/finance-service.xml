@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="财务中心-接口自动化" parallel="tests" thread-count="1">
+    <parameter name="loginUserName" value="kekoukele"/>
+    <parameter name="loginPassword" value="123456"/>
+    <test name="财务中心-供应商发票-荣文康">
+        <classes><class name="finance.service.apSupplierInvoice"/></classes>
+    </test>
+    <test name="财务中心-供应商结算-荣文康">
+        <classes><class name="finance.service.supplierAccount"/></classes>
+    </test>
+    <listeners>
+        <listener class-name="org.uncommons.reportng.HTMLReporter" />
+    </listeners>
+</suite>

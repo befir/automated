@@ -1,5 +1,6 @@
 package common;
 
+import common.utils.Browser;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Cookie;
 import org.openqa.selenium.WebDriver;
@@ -19,6 +20,7 @@ import java.util.Set;
 
 public class PageAutomatedTest {
     protected boolean driverQuite = true;
+    protected Browser browser;
     protected WebDriver driver;
     protected Actions action;
     protected WebDriverWait driverWait;
@@ -106,6 +108,7 @@ public class PageAutomatedTest {
     @Parameters({"loginUserName","loginPassword"})
     public void login(String userName,String password){
         driver=new ChromeDriver(); //chrome
+        browser = new Browser(driver);
         driverWait = new WebDriverWait(driver, Long.parseLong(properties.getProperty("timeOut")));
         driver.manage().window().maximize();
         action = new Actions(driver);

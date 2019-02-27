@@ -1,12 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 <suite name="接口自动化">
-    <parameter name="loginUserName" value="kekoukele"/>
-    <parameter name="loginPassword" value="123456"/>
-    <test name="财务接口自动化">
-        <packages>
-            <package name="finance.service" />
-        </packages>
-    </test>
+    <suite-files>
+        <suite-file path="finance/finance-service2.xml"/>
+        <suite-file path="merchant/merchant-soa-service.xml"/>
+    </suite-files>
     <!--
     <test name="商家接口自动化">
         <packages>

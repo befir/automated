@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 <suite name="商家中心-soa接口自动化" parallel="tests" thread-count="1">
+    <parameter name="domain" value="BACK_URL"/>
     <parameter name="loginUserName" value="superadmin"/>
     <parameter name="loginPassword" value="123456"/>
     <test name="分页查询所有的库存组织列表">

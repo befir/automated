@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="珀莱雅库存同步测试">
+    <test name="getStoreShopInventory">
+        <classes><class name="stock.StoreShopSynServiceImpl"/></classes>
+    </test>
+    <listeners>
+        <listener class-name="org.uncommons.reportng.HTMLReporter" />
+    </listeners>
+</suite>

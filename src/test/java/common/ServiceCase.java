@@ -4,6 +4,7 @@ public class ServiceCase {
     private String serviceType;
     private String requestMethod;
     private String contentType;
+    private String baseUrl;
     private String serviceUrl;
     private String input;
     private String expectOutput;
@@ -54,5 +55,13 @@ public class ServiceCase {
 
     public void setContentType(String contentType) {
         this.contentType = contentType;
+    }
+
+    public String getBaseUrl() {
+        return baseUrl;
+    }
+
+    public void setBaseUrl(String baseUrl) {
+        this.baseUrl = baseUrl;
     }
 }

@@ -32,9 +32,10 @@ public class ServiceTestFactory {
             serviceCase.setServiceType(row.getCell(0).getStringCellValue());
             serviceCase.setRequestMethod(row.getCell(1).getStringCellValue());
             serviceCase.setContentType(row.getCell(2).getStringCellValue());
-            serviceCase.setServiceUrl(row.getCell(3).getStringCellValue());
-            serviceCase.setInput(row.getCell(4).getStringCellValue());
-            serviceCase.setExpectOutput(row.getCell(5).getStringCellValue());
+            serviceCase.setBaseUrl(row.getCell(3).getStringCellValue());
+            serviceCase.setServiceUrl(row.getCell(4).getStringCellValue());
+            serviceCase.setInput(row.getCell(5).getStringCellValue());
+            serviceCase.setExpectOutput(row.getCell(6).getStringCellValue());
             serviceCaseList.add(serviceCase);
         }
         return serviceCaseList;

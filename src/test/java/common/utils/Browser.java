@@ -1,52 +1,57 @@
 package common.utils;
 
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
+import org.jsoup.Connection;
+import org.jsoup.Jsoup;
+
+import java.util.Iterator;
 
 public class Browser {
-    private WebDriver driver;
-    public Browser(WebDriver driver){
-        this.driver = driver;
-    }
-    public Object execute(RequestMethod method,ContentType contentType,String companyId,String url,Object param){
-        Object o = null;
-        if(ContentType.JSON.equals(contentType)){
-            o = ((JavascriptExecutor)driver).executeScript(
-                    "var result;" +
-                            "var xhr = new XMLHttpRequest();" +
-                            "xhr.open('"+method.getMethod()+"','"+url+"',false);" +
-                            "xhr.setRequestHeader('Content-type','"+contentType.getContentType()+"');" +
-                            "xhr.setRequestHeader('System-Context','[{\"companyId_\":\""+companyId+"\"}]');" +
-                            "xhr.onreadystatechange = function () {" +
-                            "if(xhr.readyState==4 && xhr.status == 200){" +
-                            "  result = JSON.parse(xhr.responseText);" +
-                            "}else if(xhr.readyState==4 && xhr.status != 200){" +
-                            "  result='服务异常:'+xhr.status;" +
-                            "}" +
-                            "};" +
-                            "xhr.send(JSON.stringify("+param+"));" +
-                            "return result;");
-        }else if(ContentType.FORM.equals(contentType)){
-            o = ((JavascriptExecutor)driver).executeScript(
-                    "var result;" +
-                            "var xhr = new XMLHttpRequest();" +
-                            "xhr.open('"+method.getMethod()+"', '"+url+"',false);" +
-                            "xhr.setRequestHeader('Content-type','"+contentType.getContentType()+"');" +
-                            "xhr.setRequestHeader('System-Context','[{\"companyId_\":\""+companyId+"\"}]');" +
-                            "var formData = new FormData();"+
-                            "for(var key in param){"+
-                            "formData.append(key,param[key]);"+
-                            "}"+
-                            "xhr.onreadystatechange = function () {" +
-                            "if(xhr.readyState==4  && xhr.status == 200){" +
-                            "  result = JSON.parse(xhr.responseText);" +
-                            "}else if(xhr.readyState==4  && xhr.status != 200){" +
-                            "  result='服务异常:'+xhr.status;" +
-                            "}" +
-                            "};" +
-                            "xhr.send(formData);" +
-                            "return result;");
+    private String companyId;
+    private String ut;
+    public Connection.Response execute(String method, ContentType contentType, String url, JSONObject param) throws Exception{
+        Connection connection = Jsoup.connect(url)
+                .method(Connection.Method.valueOf(method.toUpperCase()))
+                .ignoreContentType(true)
+                .header("Accept","application/json, text/plain, */*")
+                .header("Accept-Encoding","gzip, deflate")
+                .header("Accept-Language","en-US,en;q=0.9,zh-CN;q=0.8,zh;q=0.7")
+                .header("Connection","keep-alive")
+                .header("Content-Length","35")
+                .header("Content-Type",contentType.getContentType())
+                .header("User-Agent","Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.119 Safari/537.36");
+        if(companyId!=null){
+            connection.header("System-Context","[{companyId_:'"+companyId+"'}]");
         }
-        return o;
+        if(ut!=null){
+            connection.cookie("ut",ut);
+        }
+        if(ContentType.FORM.equals(contentType)){
+            for(Iterator<String> it = param.keySet().iterator();it.hasNext();){
+                String key = it.next();
+                connection.data(key, JSON.toJSONString(param.get(key)));
+            }
+        }else{
+            connection.requestBody(param.toJSONString());
+        }
+        Connection.Response response = connection.execute();
+        return response;
+    }
+
+    public String getCompanyId() {
+        return companyId;
+    }
+
+    public void setCompanyId(String companyId) {
+        this.companyId = companyId;
+    }
+
+    public String getUt() {
+        return ut;
+    }
+
+    public void setUt(String ut) {
+        this.ut = ut;
     }
 }

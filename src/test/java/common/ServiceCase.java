@@ -8,6 +8,7 @@ public class ServiceCase {
     private String serviceUrl;
     private String input;
     private String expectOutput;
+    private String paramAlias;
 
     public String getServiceUrl() {
         return serviceUrl;
@@ -63,5 +64,13 @@ public class ServiceCase {
 
     public void setBaseUrl(String baseUrl) {
         this.baseUrl = baseUrl;
+    }
+
+    public String getParamAlias() {
+        return paramAlias;
+    }
+
+    public void setParamAlias(String paramAlias) {
+        this.paramAlias = paramAlias;
     }
 }

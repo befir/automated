@@ -36,6 +36,7 @@ public class ServiceTestFactory {
             serviceCase.setServiceUrl(row.getCell(4).getStringCellValue());
             serviceCase.setInput(row.getCell(5).getStringCellValue());
             serviceCase.setExpectOutput(row.getCell(6).getStringCellValue());
+            serviceCase.setParamAlias(row.getCell(7).getStringCellValue());
             serviceCaseList.add(serviceCase);
         }
         return serviceCaseList;
